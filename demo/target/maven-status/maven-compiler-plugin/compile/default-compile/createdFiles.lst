@@ -1,0 +1,6 @@
+com/basicj2ee/servlets/QueryStringServlet.class
+com/basicj2ee/filters/BasicRequestFilter$FilteredRequest.class
+com/basicj2ee/servlets/HelloServlet.class
+com/basicj2ee/servlets/JSPThroughServlet.class
+com/basicj2ee/filters/BasicRequestFilter.class
+com/basicj2ee/servlets/FilteredServlet.class

@@ -1,0 +1,87 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Basic J2EE Demo</display-name>
+
+  <!-- This is the most basic Servlet which prints html -->
+  <servlet>
+  	<servlet-name>HelloServlet</servlet-name>
+  	<servlet-class>com.basicj2ee.servlets.HelloServlet</servlet-class>
+  </servlet>
+  
+  <!-- This doesn't use a Servlet, directly serves a JSP -->
+  <servlet>
+    <servlet-name>JSPServlet</servlet-name>
+    <jsp-file>/jsp/hello.jsp</jsp-file>
+  </servlet>
+
+  <!-- This calls a Servlet which serves a JSP -->
+  <servlet>
+    <servlet-name>JSPThroughServlet</servlet-name>
+    <servlet-class>com.basicj2ee.servlets.JSPThroughServlet</servlet-class>
+  </servlet>
+
+  <!-- This calls a Servlet which serves a JSP with a query string variable -->
+  <servlet>
+    <servlet-name>QueryStringServlet</servlet-name>
+    <servlet-class>com.basicj2ee.servlets.QueryStringServlet</servlet-class>
+  </servlet>
+
+   <!-- This calls a FILTERED Servlet which serves a JSP with a query string variable -->
+  <servlet>
+    <servlet-name>FilteredServlet</servlet-name>
+    <servlet-class>com.basicj2ee.servlets.FilteredServlet</servlet-class>
+  </servlet>
+
+  <!-- Here are declared the URL patterns for each Servlet/JSP -->
+  <servlet-mapping>
+  	<servlet-name>HelloServlet</servlet-name>
+  	<url-pattern>/helloworld</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>JSPServlet</servlet-name>
+    <url-pattern>/jspservlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>JSPThroughServlet</servlet-name>
+    <url-pattern>/jspthroughservlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>QueryStringServlet</servlet-name>
+    <url-pattern>/query</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>FilteredServlet</servlet-name>
+    <url-pattern>/filtered</url-pattern>
+  </servlet-mapping>
+
+
+  <!-- Here are declared Filters which intercept requests -->
+  <filter>
+    <filter-name>BasicRequestFilter</filter-name> <!-- mandatory -->
+    <filter-class>com.basicj2ee.filters.BasicRequestFilter</filter-class> <!-- mandatory -->
+    <init-param> <!-- optional -->
+      <param-name>test</param-name>
+      <param-value>testValue</param-value>
+    </init-param>
+  </filter>
+
+  <!-- Here are declared which URLs are affected by each Filter -->
+
+  <!-- This filter affects the request -->
+  <filter-mapping>
+    <filter-name>BasicRequestFilter</filter-name> <!-- mandatory -->
+    <url-pattern>/filtered</url-pattern> <!-- either url-pattern or servlet-name is mandatory -->
+    <servlet-name>FilteredServlet</servlet-name>
+    <dispatcher>REQUEST</dispatcher>
+  </filter-mapping>
+  
+  
+  
+</web-app>
